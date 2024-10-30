@@ -1,6 +1,7 @@
 <template>
   <section>
     <header><h1>My friends</h1></header>
+    <!-- <new-form @named-emit-event="namedEmitEvent"></new-form> -->
     <new-friend @add-contact="addContact"></new-friend>
     <ul>
       <!-- toggle-favorite is emitted from FriendContact -->
@@ -13,6 +14,7 @@
         :email-address="friend.email"
         :is-favorite="friend.isFavorite"
         @toggle-favorite="toggleFavoriteStatus"
+        @delete="deleteContact"
       ></friend-contact>
     </ul>
   </section>
@@ -61,6 +63,20 @@ export default {
       console.log(newFriendContact);
       this.friends.push(newFriendContact);
     },
+    deleteContact(friendId) {
+      this.friends = this.friends.filter((friend) => friend.id !== friendId);
+    },
+    // namedEmitEvent(name, phone, email) {
+    //   const newFriendContact = {
+    //     id: new Date().toISOString(),
+    //     name: name,
+    //     phone: phone,
+    //     email: email,
+    //     isFavorite: false,
+    //   };
+    //   console.log(newFriendContact);
+    //   this.friends.push(newFriendContact);
+    // },
   },
   computed: {},
 };
