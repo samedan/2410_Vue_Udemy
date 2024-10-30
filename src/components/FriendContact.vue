@@ -1,7 +1,6 @@
 <template>
-  <h1>Friend Contact</h1>
   <li>
-    <h2>{{ name }} {{ friendIsFavorite === "1" ? "(Favorite)" : "" }}</h2>
+    <h2>{{ userName }} {{ isFavorite ? "(Favorite)" : "" }}</h2>
     <button @click="toggleFavorite">ToggleFavorite</button>_
     <button @click="toggleDetails">
       {{ detailsAreVisible ? "Hide" : "Show" }} Details
@@ -15,17 +14,49 @@
 
 <script>
 export default {
-  props: ["name", "phoneNumber", "emailAddress", "isFavorite"],
+  // props: ["name", "phoneNumber", "emailAddress", "isFavorite"],
+  props: {
+    id: {
+      type: String,
+      required: true,
+    },
+    userName: {
+      type: String,
+      required: true,
+    },
+    phoneNumber: {
+      type: String,
+      required: true,
+    },
+    emailAddress: {
+      type: String,
+      required: true,
+    },
+    isFavorite: {
+      type: Boolean,
+      required: false,
+      default: false,
+      // validator: function (value) {
+      //   return value === "1" || value === "0";
+      // },
+    },
+  },
+  emits: ["toggle-favorite"],
+  // Error explaininig creating
+  // emits: {
+  //   "toggle-favorite": function (id) {
+  //     if (id) {
+  //       return true;
+  //     } else {
+  //       console.log("id is missing");
+
+  //       return false;
+  //     }
+  //   },
+  // },
   data() {
     return {
       detailsAreVisible: false,
-      friendIsFavorite: this.isFavorite,
-      // friend: {
-      //   id: "manuel",
-      //   name: "Manuel Gonzales",
-      //   phone: "0986533",
-      //   email: "manule@gmail.com",
-      // },
     };
   },
   methods: {
@@ -33,11 +64,8 @@ export default {
       this.detailsAreVisible = !this.detailsAreVisible;
     },
     toggleFavorite() {
-      if (this.friendIsFavorite === "1") {
-        this.friendIsFavorite = "0";
-      } else {
-        this.friendIsFavorite = "1";
-      }
+      // this.friendIsFavorite = !this.friendIsFavorite;
+      this.$emit("toggle-favorite", this.id);
     },
   },
 };
