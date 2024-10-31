@@ -49,3 +49,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 > BaseCard.vue -> <slot name="header"></slot>
 > ComponentUsingSlot -> <template v-slot:header>
+
+# Shortcut to Slot
+
+> <template v-slot:header> = <template #header>
