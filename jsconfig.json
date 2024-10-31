@@ -5,15 +5,8 @@
     "baseUrl": "./",
     "moduleResolution": "node",
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["00_starter_src_public_folders/src/*"]
     },
-    "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable",
-      "scripthost"
-    ]
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   }
 }
